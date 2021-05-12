@@ -1,0 +1,30 @@
+@import "colors.scss";
+
+.logo {
+  display: inline-block;
+}
+
+.wordmark {
+  display: inline-block;
+}
+
+.container.--dark {
+  background-color: $gray-60;
+}
+
+.container.--light {
+  background-color: lightblue;
+}
+
+.header {
+  background-color: grey;
+  display: block;
+  width: 100vw;
+}
+
+.header__content {
+  padding: 1rem;
+}
+
+.section {
+}

@@ -6,6 +6,11 @@ The date you're submitting this.
 
 ### Location of deployed application
 If applicable, please provide the url where we can find and interact with your running application.
+https://weather-app-eight-coral.vercel.app/
+
+
+
+
 
 ### Time spent
 How much time did you spend on the assignment? Normally, this is expressed in hours.
@@ -20,6 +25,9 @@ If applicable. Did you do something that you feel could have been done better in
 let us know.
 
 ### Instructions to run assignment locally
+https://github.com/vivchen/weather-app
+
+
 If applicable, please provide us with the necessary instructions to run your solution.
 
 ### What did you not include in your solution that you want us to know about?
