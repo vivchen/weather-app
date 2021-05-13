@@ -1,4 +1,4 @@
-@import "colors.scss";
+@import "helpers.scss";
 
 .logo {
   display: inline-block;
@@ -27,4 +27,25 @@
 }
 
 .section {
+  &.--gray-20 {
+    background-color: $gray-20;
+  }
+}
+.heading {
+  &.--h1 {
+    font-size: 2.5rem;
+  }
+
+  &.--h2 {
+    font-size: 2rem;
+  }
+  &.--h3 {
+    font-size: 1.5rem;
+  }
+}
+
+.weather-icon {
+  &.--sm {
+    width: 4rem;
+  }
 }

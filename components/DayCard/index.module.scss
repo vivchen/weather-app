@@ -1,5 +1,20 @@
-@import "../../styles/colors.scss";
+@import "../../styles/helpers.scss";
 
 .daycard {
-  background-color: $gray-10;
+  background-color: $gray-40;
+  min-width: 12rem;
+
+  .daycard__content {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  &--expanded {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &--disabled {
+    color: white;
+  }
 }
