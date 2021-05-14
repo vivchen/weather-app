@@ -13,10 +13,13 @@ export default function CurrentCard({ ...props }) {
 
   return (
     <div>
-      <p className="mt-3 text-2xl inline-block">
-        Right now in {props.city}, {props.country}
+      <p className="mt-3 text-2xl block text-center">
+        Right now in{" "}
+        <strong>
+          {props.city}, {props.country}
+        </strong>
       </p>
-      <div>
+      <div class="block text-center">
         <img
           className="inline-block weather-icon"
           src={`http://openweathermap.org/img/wn/` + currIcon + `@2x.png`}
@@ -24,12 +27,11 @@ export default function CurrentCard({ ...props }) {
         />
         <span className="heading --h2">{Math.round(currTemp)}&#8451;</span>
       </div>
+      <div class="">
+        <p className="capitalize">{currDesc}</p>
 
-      <p>
-        {currMain} with {currDesc}
-      </p>
-
-      <p className="mt-3">Feels like {Math.round(feelsLike)}&#8451;</p>
+        <p className="mt-3">Feels like {Math.round(feelsLike)}&#8451;</p>
+      </div>
 
       <div>
         {/* <h2>{formattedDate}</h2> */}

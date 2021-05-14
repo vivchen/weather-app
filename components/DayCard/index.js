@@ -1,26 +1,24 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { getHigh, getLow } from "../../util/getExtreme";
+import { getTime } from "../../util/getReadableDate";
 
-export default function DayCard({ data, index }) {
+export default function DayCard({ data, index, setActiveIndex, activeIndex }) {
+  // get values from data
   const day = data[0].day;
-  const [activeIndex, setExpandIndex] = useState(false);
   const high = getHigh(data);
   const low = getLow(data);
 
+  // handle DayCard state
   const handleChange = (index) => {
-    setExpandIndex(activeIndex === index ? null : index);
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
     <button
       className={`p-6 mt-6 text-left border rounded-xl hover:text-blue-600 focus:text-blue-600 ${
         styles.daycard
-      } ${
-        index === activeIndex
-          ? styles["daycard--expanded"]
-          : styles["daycard--disabled"]
-      }`}
+      } ${index === activeIndex ? styles["daycard--expanded"] : ""}`}
       onClick={() => {
         handleChange(index);
       }}
@@ -40,12 +38,25 @@ export default function DayCard({ data, index }) {
           }
           alt=""
         />
-        {index === activeIndex ? <ExpandedDayCard /> : ""}
+        {activeIndex === index ? <ExpandedDayCard data={data} /> : ""}
       </div>
     </button>
   );
 }
 
-function ExpandedDayCard() {
-  return <div>insert 3 hour step activity</div>;
+function ExpandedDayCard({ data }) {
+  return data.map((chunk, i) => {
+    // debugger;
+
+    return (
+      <div className={styles.daycard__steps}>
+        <dl>
+          <div className={styles.daycard__step}>
+            <dt className={styles.daycard__key}>{getTime(chunk.dt)}</dt>
+            <dd className={styles.daycard__value}>{chunk.main.temp}&#8451;</dd>
+          </div>
+        </dl>
+      </div>
+    );
+  });
 }

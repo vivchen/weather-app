@@ -14,7 +14,14 @@
     flex-wrap: wrap;
   }
 
-  &--disabled {
-    color: white;
+  .daycard__step {
+    dt,
+    dd {
+      display: inline-block;
+    }
+  }
+
+  .daycard__key {
+    margin-right: $miniunit;
   }
 }

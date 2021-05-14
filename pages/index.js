@@ -3,23 +3,27 @@ import moment from "moment";
 import DayCard from "../components/DayCard";
 import CurrentCard from "../components/CurrentCard";
 
+import { getDay, getDate, getTime, getTimeZone } from "../util/getReadableDate";
+
+import { useState } from "react";
+
 export default function Home(data) {
   const dateString = data.data.list[0].dt;
   const city = data.data.city.name;
   const country = data.data.city.country;
+  // const timeZone = getTimeZone(dateString);
 
-  console.log("data", data);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const result = addDayProp(data.data.list);
   const groupedByDay = groupByDay(result);
 
-  var todayData = groupedByDay.slice(0, 1);
-  var forecastData = groupedByDay.slice(1, groupedByDay.length);
+  let todayData = groupedByDay.slice(0, 1);
+  let forecastData = groupedByDay.slice(1, groupedByDay.length);
 
-  var formattedDate = moment.unix(dateString).format("MMMM Do, YYYY h:mm:ss A");
-  var currDay = moment.unix(dateString).format("dddd");
-
-  // var unixFormattedDate = moment.unix(data.data.list[0].dt).format('dddd, MMMM Do, YYYY h:mm:ss A')
+  let updatedAt = getTime(moment(dateString).subtract({ hours: 3 }));
+  let formattedDate = getDate(dateString);
+  let currDay = getDay(dateString);
 
   return (
     <div className="">
@@ -41,14 +45,17 @@ export default function Home(data) {
         </div>
       </header>
 
-      <main className="px-20">
+      <main className="lg:px-20">
         <section className="">
-          <div className="flex justify-center mt-14">
+          <div className={`mt-14 simpleCard --center --border`}>
+            <p>{formattedDate}</p>
+            <p>{currDay}</p>
             <CurrentCard data={todayData} city={city} country={country} />
+            <p className="label">Last Updated: {updatedAt}</p>
           </div>
 
           <div className="flex justify-center">
-            <h3 className="heading h3">Short term forecast</h3>
+            {/* <h3 className="heading h3">Short term forecast</h3> */}
           </div>
         </section>
 
@@ -60,7 +67,12 @@ export default function Home(data) {
                 {forecastData.map((day, i) => {
                   return (
                     <li key={i} className="inline-block">
-                      <DayCard data={day} index={i} />
+                      <DayCard
+                        data={day}
+                        index={i}
+                        setActiveIndex={setActiveIndex}
+                        activeIndex={activeIndex}
+                      />
                     </li>
                   );
                 })}
@@ -79,7 +91,8 @@ export default function Home(data) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?id=6173331&units=metric&APPID=b2088acfff9d2d0d316f2181fc513984`
+    `http://api.openweathermap.org/data/2.5/forecast?id=6173331&units=metric&APPID=` +
+      process.env.OPENWEATHERMAP_API_KEY
   );
   const data = await res.json();
 
