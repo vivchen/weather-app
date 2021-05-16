@@ -1,12 +1,31 @@
 @import "../../styles/helpers.scss";
 
 .daycard {
-  background-color: $gray-40;
+  background-color: $gray-20;
   min-width: 12rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border-width: 1px;
+
+  &:hover {
+    color: rgba(37, 99, 235, 1);
+  }
+
+  &:focus {
+    color: rgba(37, 99, 235, 1);
+  }
+
+  @media screen and (min-width: $lg - 1) {
+  }
 
   .daycard__content {
     flex: 0 0 100%;
     width: 100%;
+    text-align: center;
+
+    @media screen and (min-width: $lg - 1) {
+      text-align: left;
+    }
   }
 
   &--expanded {

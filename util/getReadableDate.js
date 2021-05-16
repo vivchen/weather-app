@@ -1,5 +1,11 @@
 import moment from "moment";
 
+export function getTimeMinusHours(string, num) {
+  let time = moment.unix(string).subtract(num, "hours").format("h A");
+
+  return time;
+}
+
 export function getTime(string) {
   let time = moment.unix(string).format("h A");
 

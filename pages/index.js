@@ -3,7 +3,7 @@ import moment from "moment";
 import DayCard from "../components/DayCard";
 import CurrentCard from "../components/CurrentCard";
 
-import { getDay, getDate, getTime, getTimeZone } from "../util/getReadableDate";
+import { getDay, getDate, getTimeMinusHours } from "../util/getReadableDate";
 
 import { useState } from "react";
 
@@ -11,19 +11,21 @@ export default function Home(data) {
   const dateString = data.data.list[0].dt;
   const city = data.data.city.name;
   const country = data.data.city.country;
-  // const timeZone = getTimeZone(dateString);
 
   const [activeIndex, setActiveIndex] = useState(null);
 
   const result = addDayProp(data.data.list);
   const groupedByDay = groupByDay(result);
 
+  // splice data by today and every other day following today
   let todayData = groupedByDay.slice(0, 1);
   let forecastData = groupedByDay.slice(1, groupedByDay.length);
 
-  let updatedAt = getTime(moment(dateString).subtract({ hours: 3 }));
+  let updatedAt = getTimeMinusHours(dateString, 3);
   let formattedDate = getDate(dateString);
   let currDay = getDay(dateString);
+
+  // debugger;
 
   return (
     <div className="">
@@ -40,30 +42,32 @@ export default function Home(data) {
               alt="Vancouver Weather Home"
               aria-hidden="true"
             />
-            <h1 className="wordmark ml-2">Weather App</h1>
+            <h1 className="wordmark ml-2">My Weather App</h1>
           </a>
         </div>
       </header>
 
-      <main className="lg:px-20">
+      <main className="lg:px-20 md:px-10 sm:px-5">
         <section className="">
           <div className={`mt-14 simpleCard --center --border`}>
-            <p>{formattedDate}</p>
-            <p>{currDay}</p>
-            <CurrentCard data={todayData} city={city} country={country} />
-            <p className="label">Last Updated: {updatedAt}</p>
-          </div>
+            <p>
+              {formattedDate}, {currDay}
+            </p>
 
-          <div className="flex justify-center">
-            {/* <h3 className="heading h3">Short term forecast</h3> */}
+            <CurrentCard
+              data={todayData}
+              city={city}
+              country={country}
+              updatedAt={updatedAt}
+            />
           </div>
         </section>
 
         <section className="section">
-          <div className="flex flex-wrap flex-col justify-around mt-6 sm:w-full">
-            <h2 className="heading --h2">Next 5 Days</h2>
+          <div className="flex flex-wrap flex-col justify-around mt-12 ">
+            <h2 className="heading --h2 text-center mb-3">Next 5 Days</h2>
             <div className="flex flex-wrap flex-center justify-around ">
-              <ul className="">
+              <ul className="cardContainer">
                 {forecastData.map((day, i) => {
                   return (
                     <li key={i} className="inline-block">

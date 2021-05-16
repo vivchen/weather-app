@@ -72,8 +72,24 @@
   }
 }
 
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  @media screen and (min-width: $lg - 1) {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
 // Utilities
 
 .capitalize::first-letter {
   text-transform: uppercase;
+}
+
+.text-gray-60 {
+  color: $gray-60;
 }

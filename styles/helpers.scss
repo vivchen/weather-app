@@ -1,5 +1,17 @@
 $miniunit: 8px;
 
+$sm: 320px;
+$md: 672px;
+$lg: 1056px;
+$xl: 1312px;
+$max: 1584px;
+
+$sm-minus-1: calc(#{$sm} - 1px);
+$md-minus-1: calc(#{$md} - 1px);
+$lg-minus-1: calc(#{$lg} - 1px);
+$xl-minus-1: calc(#{$xl} - 1px);
+$max-minus-1: calc(#{$max} - 1px);
+
 $gray-10: #f4f4f4;
 $gray-20: #e0e0e0;
 $gray-40: #a8a8a8;
