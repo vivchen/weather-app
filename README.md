@@ -28,7 +28,7 @@ Setup of the boilerplate probably took around 1-2 hours.
 
 ### Instructions to run assignment locally
 
-1. Clone the repo from https://github.com/vivchen/weather-app (Note to self: make public), make sure to pull from the `master` branch.
+1. Clone the repo from https://github.com/vivchen/weather-app, make sure to pull the `master` branch.
 2. Run `npm i`
 3. Run `npm run dev` to start the local server, then view at https://localhost:3000
 
