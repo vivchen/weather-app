@@ -39,7 +39,7 @@ about? Please list it here so that we know that you considered it.
 
 ### Other information about your submission that you feel it's important that we know if applicable.
 
-- I chose not to leave the alt text empty for the weather icons since there is adjacent text describing the weather conditions and which could end up as duplicated text when announced by screen readers.
+- I chose to leave the alt text empty for the weather icons since there is adjacent text describing the weather conditions and which could end up as duplicated text when announced by screen readers.
 - My scss/css strategy is not ideal. For components that have their own folder I am using css modules to style them. And components that exist solely in the markup of the index page I did not bother creating a separate folder and breaking those out into separate files since it seemed like overkill for the purposes of this challenge. Those "component" styles live within the global.scss file which is not a css module and therefore uses a different css convention in the markup which can make things confusing. This is not a great real-world practice since we have component styles living in two places without a super clear rule/principle. This would become quite annoying as the app scales and the codebase grows.
 - I wrote some super basic tests with Cypress in home_page_spec.js
   - Testing that the city and country strings match with "Vancouver" and "CA" respectively
