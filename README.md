@@ -1,7 +1,3 @@
-## Notes
-
-_Please do not supply your name or email address in this document. We're doing our best to remain unbiased._
-
 ### Date
 
 May 17, 2021, Monday
