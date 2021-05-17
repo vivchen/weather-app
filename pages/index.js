@@ -25,12 +25,10 @@ export default function Home(data) {
   let formattedDate = getDate(dateString);
   let currDay = getDay(dateString);
 
-  // debugger;
-
   return (
     <div className="">
       <Head>
-        <title>Weather Forecast App</title>
+        <title>My Weather App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="header">
@@ -50,9 +48,9 @@ export default function Home(data) {
       <main className="lg:px-20 md:px-10 sm:px-5">
         <section className="">
           <div className={`mt-14 simpleCard --center --border`}>
-            <p>
+            <time>
               {formattedDate}, {currDay}
-            </p>
+            </time>
 
             <CurrentCard
               data={todayData}

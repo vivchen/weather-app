@@ -20,14 +20,16 @@ Setup of the boilerplate probably took around 1-2 hours.
 Use this section to tell us about any assumptions that you made when creating your solution.
 
 - The app currently does not know where in the world you are viewing from and just assumes you're in Vancouver and speak/understand English.
+- Assumes that the data received by the API is always organized chronologically, In the `groupByDay()` function we process the data so that it's organized in arrays which represent a whole 'day', we don't actually check to make sure that the timestamps are ordered correctly from the data, we just assume that it is.
 
 ### Shortcuts/Compromises made
 
 If applicable. Did you do something that you feel could have been done better in a real-world application? Please
 let us know.
 
-- It'd be nice to have the data get re-fetched in intervals so that if the tab gets left open, it at least is up to date with current conditiions. Didn't look into this as it's probably more of a back-end task and I didn't want to "overengineer".
+- It'd be nice to have the data get re-fetched in intervals so that if the tab gets left open, it at least is up to date with current conditiions.
 - I'm not a huge fan of the icons against a white background since the white of the clouds is hard to see. It would be nice to use a different icon pack that had some sort of outline so that I can still use light/grey background colors. However I'd have to figure out how to map the current conditions to the correct icon which is a whole technical challenge within itself.
+- My tests aren't very rigorous, would be nice to have some more in-depth tests that test the accuracy of the data returned.
 
 ### Instructions to run assignment locally
 
@@ -48,9 +50,12 @@ about? Please list it here so that we know that you considered it.
 
 - I chose not to leave the alt text empty for the weather icons since there is adjacent text describing the weather conditions and which could end up as duplicated text when announced by screen readers.
 - My scss/css strategy is not ideal. For components that have their own folder I am using css modules to style them. And components that exist solely in the markup of the index page I did not bother creating a separate folder and breaking those out into separate files since it seemed like overkill for the purposes of this challenge. Those "component" styles live within the global.scss file which is not a css module and therefore uses a different css convention in the markup which can make things confusing. This is not a great real-world practice since we have component styles living in two places without a super clear rule/principle. This would become quite annoying as the app scales and the codebase grows.
+- I wrote some super basic tests with Cypress in home_page_spec.js
+  - Testing that the city and country strings match with "Vancouver" and "CA" respectively
+  - Clicking and expanding all the buttons on the page
 
 ### Your feedback on this technical challenge
 
 Have feedback for how we could make this assignment better? Please let us know.
 
-- The amount of time that someone could take on doing this assignment can really balloon when running into technical issues in setting up their framework or making sense of the data. It did take me some time to figure out that the time was in UTC and that I had to convert it. It might be useful to provide some hints about the 'gotchas' of the project so that people don't spend too much time in the setup phase. However, I also understand you are leaving it vague to see how they deal with roadblocks and challenges. Otherwise, it was quite a fun challenge and is probably reflective of the work done for the Front-End Engineer role, so it's nice to get a sense of the kind of work I'd be doing rather than doing live algorithm coding challenges under a lot of pressure (which I find are usually not indicative of how someone performs at a job like this, so I appreciate that).
+- The amount of time that someone could take on doing this assignment can really balloon when running into technical issues in setting up their framework or making sense of the data. I do however understand you are leaving it vague intentionally to see how they deal with roadblocks and challenges, but for folks that might be at a loss for a decent boilerplate/framework to use, you could potentially suggest a couple. Otherwise, it was quite a fun challenge and is probably reflective of the work done for the Front-End Engineer role, so it's nice to get a sense of the kind of work I'd be doing rather than doing live algorithm coding challenges under a lot of pressure (which I find are usually not indicative of how someone performs on the job, so I appreciate that).

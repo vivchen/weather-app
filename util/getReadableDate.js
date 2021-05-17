@@ -29,8 +29,3 @@ export function getDay(string) {
 
   return day;
 }
-
-export function getTimeZone(string) {
-  let tz = moment.unix(string).format("z");
-  return tz;
-}
