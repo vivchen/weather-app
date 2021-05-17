@@ -9,10 +9,8 @@ export default function CurrentCard({ ...props }) {
   const feelsLike = current.main.feels_like;
   const currIcon = current.weather[0].icon;
   const currDesc = current.weather[0].description;
-
   const high = getHigh(...props.data).main.temp;
   const low = getLow(...props.data).main.temp;
-  // debugger;
 
   return (
     <div>

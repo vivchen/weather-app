@@ -1,29 +1,34 @@
+// Packages
 import Head from "next/head";
 import moment from "moment";
+import { useState } from "react";
+
+// Components
 import DayCard from "../components/DayCard";
 import CurrentCard from "../components/CurrentCard";
 
+// Util functions
 import { getDay, getDate, getTimeMinusHours } from "../util/getReadableDate";
 
-import { useState } from "react";
-
 export default function Home(data) {
+  // variables
   const dateString = data.data.list[0].dt;
   const city = data.data.city.name;
   const country = data.data.city.country;
+  const updatedAt = getTimeMinusHours(dateString, 3);
+  const formattedDate = getDate(dateString);
+  const currDay = getDay(dateString);
 
+  // useState init for DayCard buttons
   const [activeIndex, setActiveIndex] = useState(null);
 
+  // process data
   const result = addDayProp(data.data.list);
   const groupedByDay = groupByDay(result);
 
   // splice data by today and every other day following today
   let todayData = groupedByDay.slice(0, 1);
   let forecastData = groupedByDay.slice(1, groupedByDay.length);
-
-  let updatedAt = getTimeMinusHours(dateString, 3);
-  let formattedDate = getDate(dateString);
-  let currDay = getDay(dateString);
 
   return (
     <div className="">
